@@ -24,6 +24,7 @@ body {
     font-size: 30px;
     font-weight: 600;
     color: teal;
+    text-align: center;
 }
 
 .wrapper .inputField {
