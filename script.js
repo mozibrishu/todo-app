@@ -11,7 +11,7 @@ inputBox.onkeyup = (event) => {
     else {
         addBtn.classList.remove("active");
     }
-    if (event.keyCode === 13) {
+    if (event.key === "Enter") {
         addBtn.click();
       }
 }
