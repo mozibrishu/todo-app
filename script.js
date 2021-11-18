@@ -5,10 +5,10 @@ const clearAllBtn = document.querySelector(".footer button");
 showTasks();
 inputBox.onkeyup = () => {
     let userInput = inputBox.value;
-    if (userInput.trim().length != 0){
+    if (userInput.trim().length != 0) {
         addBtn.classList.add("active");
     }
-    else{
+    else {
         addBtn.classList.remove("active");
     }
 }
@@ -16,36 +16,39 @@ inputBox.onkeyup = () => {
 addBtn.onclick = () => {
     let userInput = inputBox.value;
     let getLocalStorage = localStorage.getItem("new todo");
-    if(getLocalStorage == null){
+    if (getLocalStorage == null) {
         listArr = [];
     }
-    else{
+    else {
         listArr = JSON.parse(getLocalStorage);
     }
-    listArr.push(userInput);
+    if (userInput.trim().length != 0) {
+        listArr.push(userInput);
+    }
+
     localStorage.setItem("new todo", JSON.stringify(listArr));
     showTasks();
 }
 
 // showing tasklist
-function showTasks(){
+function showTasks() {
     let getLocalStorage = localStorage.getItem("new todo");
-    if(getLocalStorage == null){
+    if (getLocalStorage == null) {
         listArr = [];
     }
-    else{
+    else {
         listArr = JSON.parse(getLocalStorage);
     }
 
-    if(listArr.length > 0){
+    if (listArr.length > 0) {
         clearAllBtn.classList.add("active");
-    }else{
+    } else {
         clearAllBtn.classList.remove("active");
     }
     let newLiTag = '';
     const pendingTaskNum = document.querySelector(".pendingTaskNum");
     pendingTaskNum.textContent = listArr.length;
-    listArr.forEach((elm,index) => {
+    listArr.forEach((elm, index) => {
         newLiTag += `<li> ${elm}<span onclick="deleteTask(${index})"><i class="fa fa-trash"></i></span></li>`
     });
     todoList.innerHTML = newLiTag;
@@ -54,7 +57,7 @@ function showTasks(){
 }
 
 // delete task
-function deleteTask(index){
+function deleteTask(index) {
     let getLocalStorage = localStorage.getItem("new todo");
     listArr = JSON.parse(getLocalStorage);
     listArr.splice(index, 1);
