@@ -1,6 +1,7 @@
 const inputBox = document.querySelector(".inputField input");
 const addBtn = document.querySelector(".inputField button");
 const todoList = document.querySelector(".todoList");
+const clearAllBtn = document.querySelector(".footer button");
 showTasks();
 inputBox.onkeyup = () => {
     let userInput = inputBox.value;
@@ -36,6 +37,11 @@ function showTasks(){
         listArr = JSON.parse(getLocalStorage);
     }
 
+    if(listArr.length > 0){
+        clearAllBtn.classList.add("active");
+    }else{
+        clearAllBtn.classList.remove("active");
+    }
     let newLiTag = '';
     const pendingTaskNum = document.querySelector(".pendingTaskNum");
     pendingTaskNum.textContent = listArr.length;
@@ -44,6 +50,7 @@ function showTasks(){
     });
     todoList.innerHTML = newLiTag;
     inputBox.value = "";
+    addBtn.classList.remove("active");
 }
 
 // delete task
