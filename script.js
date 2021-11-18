@@ -3,7 +3,7 @@ const addBtn = document.querySelector(".inputField button");
 const todoList = document.querySelector(".todoList");
 const clearAllBtn = document.querySelector(".footer button");
 showTasks();
-inputBox.onkeyup = () => {
+inputBox.onkeyup = (event) => {
     let userInput = inputBox.value;
     if (userInput.trim().length != 0) {
         addBtn.classList.add("active");
@@ -11,6 +11,9 @@ inputBox.onkeyup = () => {
     else {
         addBtn.classList.remove("active");
     }
+    if (event.keyCode === 13) {
+        addBtn.click();
+      }
 }
 
 addBtn.onclick = () => {
