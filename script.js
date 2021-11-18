@@ -62,14 +62,14 @@ function showTasks() {
 // delete task
 function deleteTask(index) {
     let getLocalStorage = localStorage.getItem("new todo");
-    listArr = JSON.parse(getLocalStorage);
+    let listArr = JSON.parse(getLocalStorage);
     listArr.splice(index, 1);
     localStorage.setItem("new todo", JSON.stringify(listArr));
     showTasks();
 }
 
 clearAllBtn.onclick =() => {
-    listArr = [];
+    let listArr = [];
     localStorage.setItem("new todo", JSON.stringify(listArr));
     showTasks();
 }
